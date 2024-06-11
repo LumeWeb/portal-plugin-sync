@@ -111,7 +111,11 @@ func factory() core.PluginInfo {
 	return core.PluginInfo{
 		ID: "sync",
 		GetAPI: func(ctx *core.Context) (core.API, error) {
-			return NewSync(*ctx), nil
+			if ctx.Services().Sync().Enabled() {
+				return NewSync(*ctx), nil
+			}
+
+			return nil, nil
 		},
 	}
 }
