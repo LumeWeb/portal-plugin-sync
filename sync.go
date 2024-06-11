@@ -30,7 +30,7 @@ func NewSync(ctx core.Context) *SyncAPI {
 	return &SyncAPI{
 		ctx:    ctx,
 		config: ctx.Config(),
-		sync:   ctx.Services().Syncer(),
+		sync:   ctx.Services().Sync(),
 		user:   ctx.Services().User(),
 	}
 }
