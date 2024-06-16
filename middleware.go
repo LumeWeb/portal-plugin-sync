@@ -1,11 +1,11 @@
 package sync
 
 import (
-	"github.com/LumeWeb/portal/core"
 	"github.com/gorilla/mux"
+	"go.lumeweb.com/portal/core"
 	"net/http"
 
-	"github.com/LumeWeb/portal/middleware"
+	"go.lumeweb.com/portal/middleware"
 )
 
 const (

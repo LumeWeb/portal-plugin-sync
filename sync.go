@@ -2,11 +2,11 @@ package sync
 
 import (
 	"encoding/hex"
-	"github.com/LumeWeb/httputil"
-	"github.com/LumeWeb/portal/config"
-	"github.com/LumeWeb/portal/core"
-	"github.com/LumeWeb/portal/middleware"
 	"github.com/gorilla/mux"
+	"go.lumeweb.com/httputil"
+	"go.lumeweb.com/portal/config"
+	"go.lumeweb.com/portal/core"
+	"go.lumeweb.com/portal/middleware"
 	"net/http"
 )
 

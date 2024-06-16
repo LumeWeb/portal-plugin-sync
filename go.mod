@@ -1,13 +1,13 @@
-module github.com/LumeWeb/portal-plugin-sync
+module go.lumeweb.com/portal-plugin-sync
 
 go 1.22.1
 
 toolchain go1.22.2
 
 require (
-	github.com/LumeWeb/httputil v0.0.0-20240601144746-504fd57b96e6
-	github.com/LumeWeb/portal v0.1.0-develop.3.0.20240611011436-959fbd78aa9e
 	github.com/gorilla/mux v1.8.1
+	go.lumeweb.com/httputil v0.0.0-20240616192644-3d270a528d86
+	go.lumeweb.com/portal v0.1.0-develop.3.0.20240616191449-0923386a55bb
 )
 
 require (
@@ -44,7 +44,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/jonboulle/clockwork v0.4.0 // indirect
-	github.com/julienschmidt/httprouter v1.3.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
 	github.com/klauspost/reedsolomon v1.12.1 // indirect
 	github.com/knadh/koanf v1.5.0 // indirect
@@ -63,7 +62,6 @@ require (
 	go.etcd.io/etcd/client/v3 v3.5.14 // indirect
 	go.sia.tech/core v0.2.6 // indirect
 	go.sia.tech/coreutils v0.0.5 // indirect
-	go.sia.tech/jape v0.11.2-0.20240228204811-29a0f056d231 // indirect
 	go.sia.tech/mux v1.2.0 // indirect
 	go.sia.tech/renterd v1.0.7 // indirect
 	go.sia.tech/siad v1.5.10-0.20230228235644-3059c0b930ca // indirect
@@ -74,7 +72,6 @@ require (
 	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
-	golang.org/x/tools v0.22.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20240610135401-a8a62080eff3 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240610135401-a8a62080eff3 // indirect
 	google.golang.org/grpc v1.64.0 // indirect
