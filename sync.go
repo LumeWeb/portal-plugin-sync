@@ -15,24 +15,38 @@ const subdomain = "sync"
 var _ core.API = (*SyncAPI)(nil)
 
 func init() {
-	core.RegisterPlugin(factory)
+	core.RegisterPlugin(core.PluginInfo{
+		ID: "sync",
+		API: func() (core.API, []core.ContextBuilderOption, error) {
+			return NewSync()
+		},
+	})
 }
 
 type SyncAPI struct {
 	ctx    core.Context
 	config config.Manager
-	logger core.Logger
+	logger *core.Logger
 	sync   core.SyncService
 	user   core.UserService
 }
 
-func NewSync(ctx core.Context) *SyncAPI {
-	return &SyncAPI{
-		ctx:    ctx,
-		config: ctx.Config(),
-		sync:   ctx.Services().Sync(),
-		user:   ctx.Services().User(),
-	}
+func NewSync() (*SyncAPI, []core.ContextBuilderOption, error) {
+
+	api := &SyncAPI{}
+
+	opts := core.ContextOptions(
+		core.ContextWithStartupFunc(func(ctx core.Context) error {
+			api.ctx = ctx
+			api.config = ctx.Config()
+			api.logger = ctx.Logger()
+			api.sync = ctx.Service(core.SYNC_SERVICE).(core.SyncService)
+			api.user = ctx.Service(core.USER_SERVICE).(core.UserService)
+			return nil
+		}),
+	)
+
+	return api, opts, nil
 }
 
 func (s *SyncAPI) Name() string {
@@ -105,17 +119,4 @@ func (s *SyncAPI) Configure(router *mux.Router) error {
 
 func (s *SyncAPI) Subdomain() string {
 	return subdomain
-}
-
-func factory() core.PluginInfo {
-	return core.PluginInfo{
-		ID: "sync",
-		GetAPI: func(ctx *core.Context) (core.API, error) {
-			if ctx.Services().Sync().Enabled() {
-				return NewSync(*ctx), nil
-			}
-
-			return nil, nil
-		},
-	}
 }
