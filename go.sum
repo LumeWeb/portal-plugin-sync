@@ -486,6 +486,10 @@ go.lumeweb.com/portal v0.1.0-develop.3.0.20240619033336-8f6309e5e37e h1:CgbyoNPc
 go.lumeweb.com/portal v0.1.0-develop.3.0.20240619033336-8f6309e5e37e/go.mod h1:05po9CisgfDk7sLNGkWHjW0X8WAQwi/vECPABS/PtlY=
 go.lumeweb.com/portal v0.1.0-develop.3.0.20240619035502-8b7dc56c13a7 h1:gOMy/NDdxrcq8osFW3I0oDuCwKljW6CH25fvjaiDSyU=
 go.lumeweb.com/portal v0.1.0-develop.3.0.20240619035502-8b7dc56c13a7/go.mod h1:zd0kbI/bmqRHHvRfHI1zcPRZCnlHNenx0RKXbZHbPoA=
+go.lumeweb.com/portal v0.1.1-0.20240619060643-ade9a366a34f h1:tdrwYycVxjQHsTMHPZDVNHkGnixhIdAN6M7o/GooW/I=
+go.lumeweb.com/portal v0.1.1-0.20240619060643-ade9a366a34f/go.mod h1:zd0kbI/bmqRHHvRfHI1zcPRZCnlHNenx0RKXbZHbPoA=
+go.lumeweb.com/portal v0.1.1-0.20240619083513-e86af4e81c83 h1:LQd4c06KBIjSHBmecfFSo5bK9CXsP5ucW63//CMiCHo=
+go.lumeweb.com/portal v0.1.1-0.20240619083513-e86af4e81c83/go.mod h1:zd0kbI/bmqRHHvRfHI1zcPRZCnlHNenx0RKXbZHbPoA=
 go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d h1:/HAlg496mquW7l7PC3n3Pj1bGYVxgTWFlM49G+to/fc=
 go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d/go.mod h1:mPoC2IFDIb+mD5bxurteKb/96JkMtRapGC9S52eM/4U=
 go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec4c1 h1:iIOQMx6pAOeaf783C1FIiSfgpPeNr0wtR9m+FMz96/k=
