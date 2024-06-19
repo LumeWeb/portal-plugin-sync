@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 	"github.com/gorilla/mux"
 	"go.lumeweb.com/httputil"
+	"go.lumeweb.com/portal-plugin-sync/types"
 	"go.lumeweb.com/portal/config"
 	"go.lumeweb.com/portal/core"
 	"go.lumeweb.com/portal/middleware"
@@ -18,7 +19,7 @@ type SyncAPI struct {
 	ctx    core.Context
 	config config.Manager
 	logger *core.Logger
-	sync   core.SyncService
+	sync   types.SyncService
 	user   core.UserService
 }
 
@@ -31,7 +32,7 @@ func NewSyncAPI() (*SyncAPI, []core.ContextBuilderOption, error) {
 			api.ctx = ctx
 			api.config = ctx.Config()
 			api.logger = ctx.Logger()
-			api.sync = ctx.Service(core.SYNC_SERVICE).(core.SyncService)
+			api.sync = ctx.Service(types.SYNC_SERVICE).(types.SyncService)
 			api.user = ctx.Service(core.USER_SERVICE).(core.UserService)
 			return nil
 		}),

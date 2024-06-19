@@ -6,6 +6,7 @@ import (
 	"errors"
 	"go.lumeweb.com/portal-plugin-sync/internal/cron/define"
 	"go.lumeweb.com/portal-plugin-sync/internal/metadata"
+	"go.lumeweb.com/portal-plugin-sync/types"
 	"go.lumeweb.com/portal/bao"
 	"go.lumeweb.com/portal/core"
 	"go.sia.tech/renterd/api"
@@ -16,14 +17,14 @@ import (
 
 const syncBucketName = "Sync"
 
-func getSyncProtocol(protocol string) (core.SyncProtocol, error) {
+func getSyncProtocol(protocol string) (types.SyncProtocol, error) {
 	proto := core.GetProtocol(protocol)
 
 	if proto == nil {
 		return nil, errors.New("protocol not found")
 	}
 
-	syncProto, ok := proto.(core.SyncProtocol)
+	syncProto, ok := proto.(types.SyncProtocol)
 
 	if !ok {
 		return nil, errors.New("protocol is not a Sync protocol")
@@ -177,8 +178,8 @@ func CronTaskUploadObject(input any, ctx core.Context) error {
 	logger := ctx.Logger()
 	renter := ctx.Service(core.RENTER_SERVICE).(core.RenterService)
 	storage := ctx.Service(core.STORAGE_SERVICE).(core.StorageService)
-	metadata := ctx.Service(core.METADATA_SERVICE).(core.MetadataService)
-	_sync := ctx.Service(core.SYNC_SERVICE).(core.SyncService)
+	meta := ctx.Service(core.METADATA_SERVICE).(core.MetadataService)
+	_sync := ctx.Service(types.SYNC_SERVICE).(types.SyncService)
 
 	fileName, err := encodeProtocolFileName(args.Hash, args.Protocol)
 	if err != nil {
@@ -214,7 +215,7 @@ func CronTaskUploadObject(input any, ctx core.Context) error {
 
 	upload.UserID = uint(args.UploaderID)
 
-	err = metadata.SaveUpload(ctx, *upload, true)
+	err = meta.SaveUpload(ctx, *upload, true)
 	if err != nil {
 		return err
 	}
@@ -235,9 +236,9 @@ func CronTaskUploadObject(input any, ctx core.Context) error {
 
 func CronTaskScanObjects(_ any, ctx core.Context) error {
 	logger := ctx.Logger()
-	metadata := ctx.Service(core.METADATA_SERVICE).(core.MetadataService)
-	_sync := ctx.Service(core.SYNC_SERVICE).(core.SyncService)
-	uploads, err := metadata.GetAllUploads(ctx)
+	meta := ctx.Service(core.METADATA_SERVICE).(core.MetadataService)
+	_sync := ctx.Service(types.SYNC_SERVICE).(types.SyncService)
+	uploads, err := meta.GetAllUploads(ctx)
 	if err != nil {
 		return err
 	}
