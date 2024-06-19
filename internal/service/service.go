@@ -34,6 +34,7 @@ import (
 )
 
 var _ syncTypes.SyncService = (*SyncServiceDefault)(nil)
+var _ core.Configurable = (*SyncServiceDefault)(nil)
 
 const ETC_NODE_PREFIX = "/node/"
 const ETC_NODE_PLACEHOLDER = "%s"
@@ -104,6 +105,10 @@ func NewSyncService() (*SyncServiceDefault, []core.ContextBuilderOption, error) 
 	)
 
 	return _sync, opts, nil
+}
+
+func (s *SyncServiceDefault) Config() (any, error) {
+	return &ServiceConfig{}, nil
 }
 
 func (s *SyncServiceDefault) ScheduleJobs(crn core.CronService) error {
