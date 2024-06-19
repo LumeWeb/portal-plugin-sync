@@ -10,7 +10,7 @@ require (
 	github.com/samber/lo v1.39.0
 	go.etcd.io/etcd/client/v3 v3.5.14
 	go.lumeweb.com/httputil v0.0.0-20240616192644-3d270a528d86
-	go.lumeweb.com/portal v0.1.0-develop.3.0.20240619035502-8b7dc56c13a7
+	go.lumeweb.com/portal v0.1.1-0.20240619083513-e86af4e81c83
 	go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d
 	go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec4c1
 	go.sia.tech/core v0.2.7
