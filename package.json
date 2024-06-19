@@ -1,7 +1,7 @@
 {
     "name": "@lumeweb/portal-plugin-sync",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.0.0",
     "devDependencies": {
         "@changesets/cli": "^2.27.1"
     },
