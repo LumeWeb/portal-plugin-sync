@@ -9,6 +9,7 @@ import (
 	_ "embed"
 	"errors"
 	"fmt"
+	"github.com/gookit/event"
 	"github.com/hashicorp/go-plugin"
 	"github.com/samber/lo"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -457,6 +458,22 @@ func (s *SyncServiceDefault) init() error {
 			}
 		})
 	}
+
+	s.ctx.Event().On(core.EVENT_STORAGE_OBJECT_UPLOADED, event.ListenerFunc(func(event event.Event) error {
+		evt, ok := event.(*core.StorageObjectUploadedEvent)
+		if !ok {
+			return errors.New("invalid event type")
+		}
+
+		upload := evt.ObjectMetadata()
+		err := s.Update(*upload)
+		if err != nil {
+			s.logger.Error("failed to update object", zap.Error(err))
+			return err
+		}
+
+		return nil
+	}))
 
 	return nil
 }
