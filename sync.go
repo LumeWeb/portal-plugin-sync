@@ -1,122 +1,28 @@
 package sync
 
 import (
-	"encoding/hex"
-	"github.com/gorilla/mux"
-	"go.lumeweb.com/httputil"
-	"go.lumeweb.com/portal/config"
+	"go.lumeweb.com/portal-plugin-sync/internal/api"
+	"go.lumeweb.com/portal-plugin-sync/internal/service"
+	"go.lumeweb.com/portal-plugin-sync/types"
 	"go.lumeweb.com/portal/core"
-	"go.lumeweb.com/portal/middleware"
-	"net/http"
 )
-
-const subdomain = "sync"
-
-var _ core.API = (*SyncAPI)(nil)
 
 func init() {
 	core.RegisterPlugin(core.PluginInfo{
 		ID: "sync",
 		API: func() (core.API, []core.ContextBuilderOption, error) {
-			return NewSync()
+			return api.NewSyncAPI()
+		},
+		Services: func() ([]core.ServiceInfo, error) {
+			return []core.ServiceInfo{
+				{
+					ID: types.SYNC_SERVICE,
+					Factory: func() (core.Service, []core.ContextBuilderOption, error) {
+						return service.NewSyncService()
+					},
+					Depends: []string{core.RENTER_SERVICE, core.STORAGE_SERVICE, core.METADATA_SERVICE, core.CRON_SERVICE},
+				},
+			}, nil
 		},
 	})
-}
-
-type SyncAPI struct {
-	ctx    core.Context
-	config config.Manager
-	logger *core.Logger
-	sync   core.SyncService
-	user   core.UserService
-}
-
-func NewSync() (*SyncAPI, []core.ContextBuilderOption, error) {
-
-	api := &SyncAPI{}
-
-	opts := core.ContextOptions(
-		core.ContextWithStartupFunc(func(ctx core.Context) error {
-			api.ctx = ctx
-			api.config = ctx.Config()
-			api.logger = ctx.Logger()
-			api.sync = ctx.Service(core.SYNC_SERVICE).(core.SyncService)
-			api.user = ctx.Service(core.USER_SERVICE).(core.UserService)
-			return nil
-		}),
-	)
-
-	return api, opts, nil
-}
-
-func (s *SyncAPI) Name() string {
-	return "sync"
-}
-
-func (s *SyncAPI) AuthTokenName() string {
-	return authCookieName
-}
-
-func (s *SyncAPI) Routes() (*mux.Router, error) {
-	authMiddlewareOpts := middleware.AuthMiddlewareOptions{
-		Context: s.ctx,
-		Purpose: core.JWTPurposeLogin,
-	}
-
-	authMw := authMiddleware(authMiddlewareOpts)
-
-	router := mux.NewRouter()
-
-	router.HandleFunc("/api/log/key", s.logKey).Methods("GET")
-	router.HandleFunc("/api/import", s.objectImport).Methods("POST").Use(authMw)
-
-	return router, nil
-}
-
-func (s *SyncAPI) logKey(w http.ResponseWriter, r *http.Request) {
-	ctx := httputil.Context(r, w)
-	keyHex := hex.EncodeToString(s.sync.LogKey())
-
-	response := LogKeyResponse{
-		Key: keyHex,
-	}
-
-	ctx.Encode(response)
-}
-
-func (s *SyncAPI) objectImport(w http.ResponseWriter, r *http.Request) {
-	ctx := httputil.Context(r, w)
-
-	var req ObjectImportRequest
-	err := ctx.Decode(&req)
-	if err != nil {
-		return
-	}
-
-	user := middleware.GetUserFromContext(r.Context())
-
-	err = s.sync.Import(req.Object, uint64(user))
-	if err != nil {
-		_ = ctx.Error(err, http.StatusBadRequest)
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-}
-
-func (s *SyncAPI) Configure(router *mux.Router) error {
-	authMiddlewareOpts := middleware.AuthMiddlewareOptions{
-		Context: s.ctx,
-	}
-
-	authMw := authMiddleware(authMiddlewareOpts)
-
-	router.HandleFunc("/api/log/key", s.logKey).Methods("GET")
-	router.HandleFunc("/api/import", s.objectImport).Methods("POST").Use(authMw)
-
-	return nil
-}
-
-func (s *SyncAPI) Subdomain() string {
-	return subdomain
 }
