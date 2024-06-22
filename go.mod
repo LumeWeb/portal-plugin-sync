@@ -6,11 +6,13 @@ toolchain go1.22.2
 
 require (
 	github.com/go-co-op/gocron/v2 v2.5.0
+	github.com/gookit/event v1.1.2
 	github.com/gorilla/mux v1.8.1
+	github.com/hashicorp/go-plugin v1.6.1
 	github.com/samber/lo v1.39.0
 	go.etcd.io/etcd/client/v3 v3.5.14
 	go.lumeweb.com/httputil v0.0.0-20240616192644-3d270a528d86
-	go.lumeweb.com/portal v0.1.1-0.20240619083513-e86af4e81c83
+	go.lumeweb.com/portal v0.1.2-0.20240622035235-ba23a2a3e759
 	go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d
 	go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec4c1
 	go.sia.tech/core v0.2.7
@@ -52,10 +54,8 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/gookit/event v1.1.2 // indirect
 	github.com/gotd/contrib v0.20.0 // indirect
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
-	github.com/hashicorp/go-plugin v1.6.1 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/hbollon/go-edlib v1.6.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
