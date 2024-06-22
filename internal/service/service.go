@@ -23,6 +23,7 @@ import (
 	"go.lumeweb.com/portal/config"
 	"go.lumeweb.com/portal/config/types"
 	"go.lumeweb.com/portal/core"
+	_event "go.lumeweb.com/portal/event"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/hkdf"
 	"io"
@@ -464,8 +465,8 @@ func (s *SyncServiceDefault) init() error {
 		})
 	}
 
-	s.ctx.Event().On(core.EVENT_STORAGE_OBJECT_UPLOADED, event.ListenerFunc(func(event event.Event) error {
-		evt, ok := event.(*core.StorageObjectUploadedEvent)
+	s.ctx.Event().On(_event.EVENT_STORAGE_OBJECT_UPLOADED, event.ListenerFunc(func(event event.Event) error {
+		evt, ok := event.(*_event.StorageObjectUploadedEvent)
 		if !ok {
 			return errors.New("invalid event type")
 		}
