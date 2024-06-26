@@ -143,17 +143,17 @@ func (s *SyncServiceDefault) Update(upload core.UploadMetadata) error {
 		return err
 	}
 
-	shardsFound := false
+	noShards := false
 
 	for _, slab := range object.Slabs {
-		if len(slab.Shards) > 0 {
-			shardsFound = true
+		if len(slab.Shards) == 0 {
+			noShards = true
 			break
 		}
 	}
 
-	if !shardsFound {
-		s.logger.Debug("object much have at-least one slab with shards", zap.String("hash", fileName))
+	if noShards {
+		s.logger.Debug("object has at-least one slab with no shards", zap.String("hash", fileName))
 		return nil
 	}
 
@@ -209,16 +209,15 @@ func (s *SyncServiceDefault) Import(object string, uploaderID uint64) error {
 			}
 
 			meta = lo.Filter(meta, func(m *metadata.FileMeta, _ int) bool {
-				shardsFound := false
-
+				noShards := false
 				for _, slab := range m.Slabs {
-					if len(slab.Shards) > 0 {
-						shardsFound = true
+					if len(slab.Shards) == 0 {
+						noShards = true
 						break
 					}
 				}
 
-				return shardsFound
+				return !noShards
 			})
 
 			if len(meta) == 0 {
