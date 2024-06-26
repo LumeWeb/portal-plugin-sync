@@ -15,7 +15,7 @@ import (
 	"io"
 )
 
-const syncBucketName = "Sync"
+const syncBucketName = "sync"
 
 func getSyncProtocol(protocol string) (types.SyncProtocol, error) {
 	proto := core.GetProtocol(protocol)
