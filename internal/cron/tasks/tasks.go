@@ -9,6 +9,7 @@ import (
 	"go.lumeweb.com/portal-plugin-sync/types"
 	"go.lumeweb.com/portal/bao"
 	"go.lumeweb.com/portal/core"
+	_event "go.lumeweb.com/portal/event"
 	"go.sia.tech/renterd/api"
 	"go.sia.tech/renterd/object"
 	"go.uber.org/zap"
@@ -179,8 +180,6 @@ func CronTaskUploadObject(input any, ctx core.Context) error {
 	renter := ctx.Service(core.RENTER_SERVICE).(core.RenterService)
 	storage := ctx.Service(core.STORAGE_SERVICE).(core.StorageService)
 	meta := ctx.Service(core.METADATA_SERVICE).(core.MetadataService)
-	_sync := ctx.Service(types.SYNC_SERVICE).(types.SyncService)
-
 	fileName, err := encodeProtocolFileName(args.Hash, args.Protocol)
 	if err != nil {
 		logger.Error("failed to encode protocol file name", zap.Error(err))
@@ -220,13 +219,12 @@ func CronTaskUploadObject(input any, ctx core.Context) error {
 		return err
 	}
 
-	err = _sync.Update(*upload)
-
+	err = renter.DeleteObjectMetadata(ctx, syncBucketName, fileName)
 	if err != nil {
 		return err
 	}
 
-	err = renter.DeleteObjectMetadata(ctx, syncBucketName, fileName)
+	err = _event.FireStorageObjectUploadedEvent(ctx, upload)
 	if err != nil {
 		return err
 	}
