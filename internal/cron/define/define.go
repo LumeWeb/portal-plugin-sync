@@ -22,6 +22,10 @@ type CronTaskUploadObjectArgs struct {
 	UploaderID uint64 `json:"uploader_id"`
 }
 
+func CronTaskVerifyObjectArgsFactory() any {
+	return &CronTaskVerifyObjectArgs{}
+}
+
 func CronTaskUploadObjectArgsFactory() any {
 	return &CronTaskUploadObjectArgs{}
 }

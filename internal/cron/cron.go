@@ -13,7 +13,7 @@ type Cron struct {
 }
 
 func (c Cron) RegisterTasks(crn core.CronService) error {
-	crn.RegisterTask(define.CronTaskVerifyObjectName, tasks.CronTaskVerifyObject, core.CronTaskDefinitionOneTimeJob, core.CronTaskNoArgsFactory)
+	crn.RegisterTask(define.CronTaskVerifyObjectName, tasks.CronTaskVerifyObject, core.CronTaskDefinitionOneTimeJob, define.CronTaskVerifyObjectArgsFactory)
 	crn.RegisterTask(define.CronTaskUploadObjectName, tasks.CronTaskUploadObject, core.CronTaskDefinitionOneTimeJob, define.CronTaskUploadObjectArgsFactory)
 	crn.RegisterTask(define.CronTaskScanObjectsName, tasks.CronTaskScanObjects, define.CronTaskScanObjectsDefinition, core.CronTaskNoArgsFactory)
 	return nil
