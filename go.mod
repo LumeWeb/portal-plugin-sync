@@ -12,10 +12,10 @@ require (
 	github.com/samber/lo v1.39.0
 	go.etcd.io/etcd/client/v3 v3.5.14
 	go.lumeweb.com/httputil v0.0.0-20240616192644-3d270a528d86
-	go.lumeweb.com/portal v0.1.2-0.20240622035235-ba23a2a3e759
+	go.lumeweb.com/portal v0.1.2-0.20240626224009-f54b84948a38
 	go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d
 	go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626105508-4a81fa6e9dbb
-	go.sia.tech/core v0.2.7
+	go.sia.tech/core v0.2.8
 	go.sia.tech/renterd v1.0.7
 	go.uber.org/zap v1.27.0
 	golang.org/x/crypto v0.24.0
@@ -26,14 +26,14 @@ require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/AfterShip/email-verifier v1.4.0 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
-	github.com/aws/aws-sdk-go-v2 v1.28.0 // indirect
+	github.com/aws/aws-sdk-go-v2 v1.30.0 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.2 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.10 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.10 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.12 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.12 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/v4a v1.3.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.11.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.3.12 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.11.12 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.11.14 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.17.10 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.55.2 // indirect
 	github.com/aws/smithy-go v1.20.2 // indirect
@@ -80,7 +80,7 @@ require (
 	gitlab.com/NebulousLabs/fastrand v0.0.0-20181126182046-603482d69e40 // indirect
 	go.etcd.io/etcd/api/v3 v3.5.14 // indirect
 	go.etcd.io/etcd/client/pkg/v3 v3.5.14 // indirect
-	go.sia.tech/coreutils v0.0.6 // indirect
+	go.sia.tech/coreutils v0.0.7 // indirect
 	go.sia.tech/mux v1.2.0 // indirect
 	go.sia.tech/siad v1.5.10-0.20230228235644-3059c0b930ca // indirect
 	go.uber.org/multierr v1.11.0 // indirect
@@ -93,7 +93,7 @@ require (
 	google.golang.org/protobuf v1.34.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/mysql v1.5.7 // indirect
-	gorm.io/driver/sqlite v1.5.5 // indirect
+	gorm.io/driver/sqlite v1.5.6 // indirect
 	gorm.io/gorm v1.25.10 // indirect
 	lukechampine.com/blake3 v1.3.0 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
