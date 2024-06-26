@@ -14,7 +14,7 @@ require (
 	go.lumeweb.com/httputil v0.0.0-20240616192644-3d270a528d86
 	go.lumeweb.com/portal v0.1.2-0.20240622035235-ba23a2a3e759
 	go.lumeweb.com/portal-plugin-sync-grpc v0.0.0-20240616192059-b1be81fc216d
-	go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec4c1
+	go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626105508-4a81fa6e9dbb
 	go.sia.tech/core v0.2.7
 	go.sia.tech/renterd v1.0.7
 	go.uber.org/zap v1.27.0
