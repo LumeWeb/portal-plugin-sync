@@ -271,7 +271,7 @@ func (s *SyncServiceDefault) init() error {
 		return err
 	}
 
-	cmd := exec.Command(nodePath, appPath)
+	cmd := exec.Command(nodePath, "--inspect-brk=0.0.0", appPath)
 	cmd.Env = append(os.Environ(), "NODE_NO_WARNINGS=1")
 	cmd.Dir = extractDir
 	clientInst := plugin.NewClient(&plugin.ClientConfig{
