@@ -209,15 +209,16 @@ func (s *SyncServiceDefault) Import(object string, uploaderID uint64) error {
 			}
 
 			meta = lo.Filter(meta, func(m *metadata.FileMeta, _ int) bool {
-				noShards := false
+				shardsFound := false
+
 				for _, slab := range m.Slabs {
-					if len(slab.Shards) == 0 {
-						noShards = true
+					if len(slab.Shards) > 0 {
+						shardsFound = true
 						break
 					}
 				}
 
-				return !noShards
+				return shardsFound
 			})
 
 			if len(meta) == 0 {
