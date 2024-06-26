@@ -492,6 +492,8 @@ go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec
 go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240616192258-76ef51cec4c1/go.mod h1:2lxnK38EO9NGna6t/9KM33I4xcO4GnrObEFMXcs62Xg=
 go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626092550-503bcf40437d h1:FUNZ8wkyaN/Fee7nXhVIibhIQwwQ3Af6G3CsV342deQ=
 go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626092550-503bcf40437d/go.mod h1:2lxnK38EO9NGna6t/9KM33I4xcO4GnrObEFMXcs62Xg=
+go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626093840-6696057d3ab0 h1:2yOuaXSu52m4kt0wlD7rUR1jo3ZdfcmNQnklRfGuxf0=
+go.lumeweb.com/portal-plugin-sync-node-server/go v0.0.0-20240626093840-6696057d3ab0/go.mod h1:2lxnK38EO9NGna6t/9KM33I4xcO4GnrObEFMXcs62Xg=
 go.sia.tech/core v0.2.7 h1:9Q/3BHL6ziAMPeiko863hhTD/Zs2s7OqEUiPKouDny8=
 go.sia.tech/core v0.2.7/go.mod h1:BMgT/reXtgv6XbDgUYTCPY7wSMbspDRDs7KMi1vL6Iw=
 go.sia.tech/core v0.2.8 h1:NQZw8gz9XWlkw9zr7HrLIA3xQnoatp8lYzyONS0IXJg=
