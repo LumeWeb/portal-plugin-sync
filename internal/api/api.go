@@ -1,6 +1,7 @@
 package api
 
 import (
+	_ "embed"
 	"encoding/hex"
 	"github.com/gorilla/mux"
 	"go.lumeweb.com/httputil"
@@ -8,10 +9,14 @@ import (
 	"go.lumeweb.com/portal/config"
 	"go.lumeweb.com/portal/core"
 	"go.lumeweb.com/portal/middleware"
+	"go.lumeweb.com/portal/middleware/swagger"
 	"net/http"
 )
 
 const subdomain = "sync"
+
+//go:embed swagger.yaml
+var swagSpec []byte
 
 var _ core.API = (*SyncAPI)(nil)
 
@@ -101,6 +106,12 @@ func (s *SyncAPI) objectImport(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *SyncAPI) Configure(router *mux.Router) error {
+
+	err := swagger.Swagger(swagSpec, router)
+	if err != nil {
+		return err
+	}
+
 	authMiddlewareOpts := middleware.AuthMiddlewareOptions{
 		Context: s.ctx,
 	}
