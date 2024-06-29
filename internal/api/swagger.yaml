@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Sync API
+  version: 0.1.0
+paths:
+  /api/log/key:
+    get:
+      summary: Get log key
+      operationId: getLogKey
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogKeyResponse'
+
+  /api/import:
+    post:
+      summary: Import object
+      operationId: importObject
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectImportRequest'
+      responses:
+        '200':
+          description: Successful import
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+
+components:
+  schemas:
+    LogKeyResponse:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Hexadecimal encoded log key
+
+    ObjectImportRequest:
+      type: object
+      properties:
+        object:
+          type: object
+          description: The object to be imported
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: auth-token
+    QueryAuth:
+      type: apiKey
+      in: query
+      name: auth-token
+
+security:
+  - BearerAuth: []
+  - CookieAuth: []
+  - QueryAuth: []
