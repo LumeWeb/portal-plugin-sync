@@ -417,7 +417,7 @@ func (s *SyncServiceDefault) init() error {
 			boostrapNodeKey = nodeKey
 		}
 
-		logPubKey, err = sync.NodeKey(boostrapNodeKey.Public().([]byte), nil)
+		logPubKey, err = sync.NodeKey(boostrapNodeKey.Public(), nil)
 		if err != nil {
 			return err
 		}
