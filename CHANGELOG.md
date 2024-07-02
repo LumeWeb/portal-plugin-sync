@@ -1,5 +1,14 @@
 # @lumeweb/portal-plugin-sync
 
+## 0.1.2
+
+### Patch Changes
+
+- 410bca4: This patch includes minor improvements and bug fixes:
+
+  - CI pipeline optimization: Updated concurrency settings to be shared across all branches
+  - Bug fix: Resolved a type casting issue related to public key handling
+
 ## 0.1.1
 
 ### Patch Changes
